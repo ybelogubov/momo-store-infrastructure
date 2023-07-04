@@ -1,5 +1,7 @@
 # momo-store-infra
-Repository contains files reqiered for deployment of a managed Kubernetes cluster on Yandex Cloud platform 
+Repository contains files reqiered for deployment of a managed Kubernetes cluster on Yandex Cloud platform. Please note, project was developed and supposed to be initiated in GitLab infrastructure.
+
+[Main repo with project description](https://github.com/ybelogubov/momo-store)
 
 ## Getting started
 Cluster's structure described and supposed to be deployed by using Terraform.
@@ -11,13 +13,13 @@ The deployment process consist of several steps (each described in details below
 5. Modifying files and deploying the cluster;
 6. Cluster's removing;
 
-## Prepare your cloud instance on the Yandex.Cloud 
+## Prepare your cloud instance on the Yandex.Cloud
 - Go to the [management console](https://console.cloud.yandex.com/) and log in to Yandex Cloud or create an account if you do not have one yet.
 - On the [billing page](https://console.cloud.yandex.com/billing), make sure you linked a [billing account](https://cloud.yandex.com/docs/billing/concepts/billing-account) and it has the "ACTIVE" or "TRIAL_ACTIVE" status. If you do not yet have a billing account, [create one](https://cloud.yandex.com/docs/billing/quickstart/#create_billing_account).
 - If you do not have a [folder](https://cloud.yandex.com/docs/resource-manager/concepts/resources-hierarchy#folder) yet, [create one](https://cloud.yandex.com/docs/resource-manager/operations/folder/create).
 - Make sure you have enough [resources available in the cloud](https://cloud.yandex.com/docs/managed-kubernetes/concepts/limits).
 - Create [service account](https://cloud.yandex.com/en/docs/iam/operations/sa/create) with the [editor](https://cloud.yandex.com/en/docs/iam/concepts/access-control/roles#editor) role
-- Create a [static key under the service account](https://cloud.yandex.com/en/docs/iam/operations/sa/create-access-key) 
+- Create a [static key under the service account](https://cloud.yandex.com/en/docs/iam/operations/sa/create-access-key)
 
 Copy following data (you need it for the deploy process via terraform):
     - folder ID in Yandex.Cloud
@@ -27,14 +29,14 @@ Copy following data (you need it for the deploy process via terraform):
 
 ```
 cd existing_repo
-git remote add origin https://gitlab.praktikum-services.ru/yu.belogubov/momo-store-infra.git
+git remote add origin https://github.com/ybelogubov/momo-store-infrastructure.git
 git branch -M main
 git push -uf origin main
 ```
 
 ## Create a Yandex Cloud Object Storage
 Please follow the [offical user guide](https://cloud.yandex.com/en/docs/storage/quickstart) in order to create a new storage. Make sure that the service account created on the previous step have access to it (ACL roles).
-Copy the bucket name - you'll need it for the terraform deploy step. 
+Copy the bucket name - you'll need it for the terraform deploy step.
 
 ## Installing Terraform, YandexCloud CLI and copying repository data on your workstation
 - Install [Terraform](https://cloud.yandex.com/en/docs/tutorials/infrastructure-management/terraform-quickstart#install-terraform)
@@ -50,7 +52,7 @@ In case you do not have a domain name - register a new one (at any hosting). In 
 ```
 ns1.yandexcloud.net
 ns2.yandexcloud.net
-``` 
+```
 
 Register 2 subdomains:
 ```
@@ -81,7 +83,7 @@ cd existing_repo
 terraform init
 terraform plan
 terraform apply
-``` 
+```
 Deploy of the resources require some time - 10-30 minutes.
 Results of the operation can be checked in the web UI console.
 
@@ -92,11 +94,11 @@ yc managed-kubernetes cluster \
   get-credentials k8s-cluster \
   --external
 ```
-- check cluster info:git 
+- check cluster info:git
 ```
 kubectl cluster-info
 ```
-At this step you must see ip address of the control plane 
+At this step you must see ip address of the control plane
 "Kubernetes control plane is running at https://xxx.xxx.xxx.xxx"
 
 ## Create and validate a certificate
@@ -139,4 +141,3 @@ Perform following command:
 ```
 terraform destroy
 ```
-
