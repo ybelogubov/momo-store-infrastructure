@@ -1,5 +1,5 @@
 # momo-store-infra
-Repository contains files reqiered for deployment of a managed Kubernetes cluster on Yandex Cloud platform. Please note, project was developed and supposed to be initiated in GitLab infrastructure.
+Repository contains files required for deployment of a managed Kubernetes cluster on Yandex Cloud platform. Please note, project was developed and supposed to be initiated in GitLab infrastructure.
 
 [Main repo with project description](https://github.com/ybelogubov/momo-store)
 
